@@ -1,22 +1,51 @@
 .shows {
   display: flex;
   flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
+
 .show {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+  background: #fff8dc;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
+}
+
+.show .info {
+  flex: 1;
   width: 100%;
-  padding: 10px;
-  background: lightgoldenrodyellow;
-  margin-bottom: 2px;
 }
 
 .show .name {
-  width: 150px;
-}
-.show .actors {
-  width: calc(100% - 150px);
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 8px;
 }
 
-.input {
-  margin-bottom: 20px;
+.show .genres {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.show .description {
+  font-size: 0.9em;
+  line-height: 1.5;
+  color: #333;
+}
+
+.show img {
+  width: 150px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-top: 15px;
 }

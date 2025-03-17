@@ -1,11 +1,19 @@
-<!-- Поле ввода для поиска -->
-<input type="text" placeholder="Input TV show name" (input)="onInput($event)" />
+<div class="input">
+  <input placeholder="Input TV show name" (input)="onInput($event)" />
+</div>
 
-<!-- Список шоу -->
-<ul *ngIf="!loading && !error">
-  <li *ngFor="let show of filteredShows">
-    <img [src]="show.image?.medium" alt="{{ show.name }}" />
-    <h3>{{ show.name }}</h3>
-    <p>{{ show.genres?.join(', ') }}</p>
-  </li>
-</ul>
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<div class="shows" *ngIf="!loading && !error">
+  <div class="show" *ngFor="let show of filteredShows">
+    <div class="info">
+      <div class="name">{{ show.name }}</div>
+      <p class="genres"><strong>Genres:</strong> {{ show.genres?.join(', ') }}</p>
+      <p class="description"><strong>Description:</strong> {{ show.summary }}</p>
+    </div>
+    <img *ngIf="show.image?.medium" [src]="show.image.medium" alt="{{ show.name }}" />
+  </div>
+</div>
+
+
