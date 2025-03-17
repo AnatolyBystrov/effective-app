@@ -1,11 +1,11 @@
-<div class="input">
-  <input placeholder="Input tv show name" (input)="onInput($event)" />
-</div>
-<div class="shows">
-  <div class="show" *ngFor="let show of shows">
-    <div class="name">{{ show.name }}</div>
-    <div class="actors">
-      <div *ngFor="let actor of show.actors">{{ actor }}</div>
-    </div>
-  </div>
-</div>
+<!-- Поле ввода для поиска -->
+<input type="text" placeholder="Input TV show name" (input)="onInput($event)" />
+
+<!-- Список шоу -->
+<ul *ngIf="!loading && !error">
+  <li *ngFor="let show of filteredShows">
+    <img [src]="show.image?.medium" alt="{{ show.name }}" />
+    <h3>{{ show.name }}</h3>
+    <p>{{ show.genres?.join(', ') }}</p>
+  </li>
+</ul>

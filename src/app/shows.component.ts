@@ -1,37 +1,39 @@
-import { Component } from '@angular/core';
-import { NgFor } from '@angular/common';
-import { BackendService } from './backend.service';
-
-interface IShow {
-  name: string;
-  actors: string[];
-}
+import { Component, OnInit } from '@angular/core';
+import { CommonModule, NgIf, NgFor } from '@angular/common';  
+import { ApiService } from './services/api.service';
 
 @Component({
-  selector: 'shows',
-  templateUrl: `./shows.component.html`,
+  selector: 'app-shows',
+  templateUrl: './shows.component.html',
   styleUrls: ['./shows.component.css'],
   standalone: true,
-  imports: [NgFor],
+  imports: [CommonModule, NgIf, NgFor],  
 })
-export class ShowListComponent {
-  shows: IShow[] = [];
+export class ShowsComponent implements OnInit {
+  shows: any[] = [];
+  filteredShows: any[] = [];
+  loading: boolean = true;
+  error: string | null = null;
 
-  constructor(private backendService: BackendService) {}
+  constructor(private apiService: ApiService) {}
 
-  getAllShows(query: any) {
-    this.shows = [];
-    this.backendService.searchShows(query).subscribe((shows) => {
-      shows.forEach((show: any, i: any) => {
-        this.shows[i] = { name: show.show.name, actors: [] };
-        this.backendService.getCastByShow(show.show.id).subscribe((actors) => {
-          this.shows[i].actors = actors.map((a: any) => a.person.name);
-        });
-      });
+  ngOnInit(): void {
+    this.apiService.getAllShows().subscribe({
+      next: (data: any[]) => {
+        this.shows = data;
+        this.filteredShows = data;
+        this.loading = false;
+      },
+      error: (err: any) => {
+        console.error('API error:', err);
+        this.error = 'Failed to load TV shows. Please try again later.';
+        this.loading = false;
+      }
     });
   }
 
-  onInput(e: Event) {
-    this.getAllShows((e.target as any)['value']);
+  onInput(event: Event): void {
+    const input = (event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredShows = this.shows.filter(show => show.name.toLowerCase().includes(input));
   }
 }
