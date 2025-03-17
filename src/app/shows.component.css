@@ -1,0 +1,22 @@
+.shows {
+  display: flex;
+  flex-direction: column;
+}
+.show {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  background: lightgoldenrodyellow;
+  margin-bottom: 2px;
+}
+
+.show .name {
+  width: 150px;
+}
+.show .actors {
+  width: calc(100% - 150px);
+}
+
+.input {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,11 @@
+<div class="input">
+  <input placeholder="Input tv show name" (input)="onInput($event)" />
+</div>
+<div class="shows">
+  <div class="show" *ngFor="let show of shows">
+    <div class="name">{{ show.name }}</div>
+    <div class="actors">
+      <div *ngFor="let actor of show.actors">{{ actor }}</div>
+    </div>
+  </div>
+</div>
