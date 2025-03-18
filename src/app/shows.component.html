@@ -2,18 +2,21 @@
   <input placeholder="Input TV show name" (input)="onInput($event)" />
 </div>
 
-<div *ngIf="loading">Loading...</div>
+<div *ngIf="loading" class="loading">Loading...</div>
 <div *ngIf="error" class="error">{{ error }}</div>
 
 <div class="shows" *ngIf="!loading && !error">
   <div class="show" *ngFor="let show of filteredShows">
     <div class="info">
-      <div class="name">{{ show.name }}</div>
+      <h2 class="name">{{ show.name }}</h2>
       <p class="genres"><strong>Genres:</strong> {{ show.genres?.join(', ') }}</p>
-      <p class="description"><strong>Description:</strong> {{ show.summary }}</p>
+      <p class="description">
+        <strong>Description:</strong> <span [innerHTML]="show.summary"></span>
+      </p>
+      <div class="rating" *ngIf="show.rating?.average">
+        <span>⭐ {{ show.rating.average }}/10</span>
+      </div>
     </div>
-    <img *ngIf="show.image?.medium" [src]="show.image.medium" alt="{{ show.name }}" />
+    <img [src]="show.image" alt="{{ show.name }}">
   </div>
 </div>
-
-

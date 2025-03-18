@@ -9,9 +9,8 @@ import { catchError, map } from 'rxjs/operators';
 export class BackendService {
   private BASE_URL = 'https://api.tvmaze.com';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {} 
 
-  // Получаем список всех шоу
   getAllShows(): Observable<any[]> {
     return this.http.get<any[]>(`${this.BASE_URL}/shows`).pipe(
       map((shows) =>
@@ -20,7 +19,8 @@ export class BackendService {
           name: show.name || 'Unknown Name',
           genres: show.genres?.length ? show.genres : ['Unknown Genre'],
           image: show.image?.medium || 'https://via.placeholder.com/150',
-          summary: show.summary ? this.stripHtml(show.summary) : 'No description available.',
+          summary: this.stripHtml(show.summary), // ✅ Очистка HTML перед возвратом
+          rating: show.rating?.average || 'N/A',
         }))
       ),
       catchError((error) => {
@@ -30,7 +30,6 @@ export class BackendService {
     );
   }
 
-  // Поиск шоу по названию
   searchShows(name: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.BASE_URL}/search/shows?q=${name}`).pipe(
       map((response) =>
@@ -39,7 +38,8 @@ export class BackendService {
           name: result.show.name || 'Unknown Name',
           genres: result.show.genres?.length ? result.show.genres : ['Unknown Genre'],
           image: result.show.image?.medium || 'https://via.placeholder.com/150',
-          summary: result.show.summary ? this.stripHtml(result.show.summary) : 'No description available.',
+          summary: this.stripHtml(result.show.summary), // ✅ Очистка HTML перед возвратом
+          rating: result.show.rating?.average || 'N/A',
         }))
       ),
       catchError((error) => {
@@ -49,10 +49,12 @@ export class BackendService {
     );
   }
 
-  // Удаляем HTML-теги из описания
-  private stripHtml(html: string): string {
-    const tempElement = document.createElement("div");
-    tempElement.innerHTML = html;
-    return tempElement.textContent || "No description available.";
+  private stripHtml(html: string | null): string {
+    if (!html) return "No description available.";
+    return html
+      .replace(/<\/?[^>]+(>|$)/g, "") // Убираем все HTML-теги
+      .replace(/&nbsp;/g, " ") // Убираем HTML-символы пробела
+      .replace(/&amp;/g, "&") // Убираем амперсанды
+      .trim();
   }
 }

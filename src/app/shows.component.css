@@ -1,51 +1,127 @@
-.shows {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding: 20px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.show {
+/* 🚀 Улучшенный стиль с лучшим контрастом */
+body {
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(135deg, #0d0b1a, #1f1b3c);
+  color: white;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 🌟 Заголовок */
+h1 {
+  font-size: 50px;
+  font-weight: bold;
   text-align: center;
-  padding: 15px;
-  background: #fff8dc;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  border: 1px solid #ddd;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff0099, #00ffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 1.5s infinite alternate;
 }
 
-.show .info {
-  flex: 1;
+/* 🔍 Поле поиска */
+.input {
   width: 100%;
+  text-align: center;
+  margin-top: 20px;
 }
 
-.show .name {
-  font-size: 1.4em;
+input {
+  width: 400px;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+input:focus {
+  box-shadow: 0 0 15px rgba(0, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 📺 Карточка шоу */
+.show {
+  width: 90%;
+  max-width: 900px;
+  background: linear-gradient(135deg, rgba(20, 20, 40, 0.8), rgba(10, 10, 25, 0.9));
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.3s ease-in-out;
+}
+
+.show:hover {
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.6);
+}
+
+/* 📜 Текст внутри карточки */
+.info {
+  flex: 1;
+  padding: 10px;
+}
+
+.name {
+  font-size: 26px;
   font-weight: bold;
-  margin-bottom: 8px;
+  color: #ff66ff; /* Новый неоновый оттенок */
+  text-transform: uppercase;
 }
 
-.show .genres {
-  font-size: 1em;
-  font-weight: bold;
-  margin-bottom: 5px;
+.genres {
+  font-size: 18px;
+  font-style: italic;
+  color: #bbbbbb;
 }
 
-.show .description {
-  font-size: 0.9em;
+.description {
+  font-size: 17px;
   line-height: 1.5;
-  color: #333;
+  color: #dddddd;
 }
 
+/* 🖼️ Картинки */
 .show img {
-  width: 150px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-top: 15px;
+  border-radius: 10px;
+  max-width: 160px;
+  transition: 0.3s ease-in-out;
+}
+
+.show img:hover {
+  transform: scale(1.05);
+}
+
+/* ⭐ Рейтинг (изменённый цвет) */
+.rating {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff8800; /* Оранжевый, лучше виден */
+  margin-top: 10px;
+}
+
+.rating img {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
 }
