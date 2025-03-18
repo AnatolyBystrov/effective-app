@@ -9,7 +9,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true,        
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
@@ -18,7 +18,8 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": ["ES2022", "dom"]
+    "lib": ["ES2022", "dom"],
+    "types": ["estree"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

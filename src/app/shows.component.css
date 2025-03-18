@@ -1,51 +1,170 @@
-.shows {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding: 20px;
-  max-width: 900px;
-  margin: 0 auto;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-.show {
+body {
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(135deg, #0d0b1a, #1f1b3c);
+  color: white;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  padding: 15px;
-  background: #fff8dc;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  border: 1px solid #ddd;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
-
-.show .info {
-  flex: 1;
+.background {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #0d0b1a, #1f1b3c);
+  padding: 20px;
 }
-
-.show .name {
-  font-size: 1.4em;
+.main-title {
+  font-size: 48px;
   font-weight: bold;
-  margin-bottom: 8px;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff0099, #00ffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(255, 0, 153, 0.8), 0 0 30px rgba(0, 255, 255, 0.8);
+  animation: glow 1.5s infinite alternate;
+  margin-bottom: 20px;
 }
-
-.show .genres {
-  font-size: 1em;
+/* ⚡ Заголовок с мощным свечением */
+h1 {
+  font-size: 52px;
   font-weight: bold;
-  margin-bottom: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff00ff, #00ffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(255, 0, 255, 0.8), 0 0 35px rgba(0, 255, 255, 0.9);
+  animation: glow 1.8s infinite alternate;
 }
 
-.show .description {
-  font-size: 0.9em;
+
+.input {
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+input {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 400;
+  width: 420px;
+  padding: 14px;
+  font-size: 20px;
+  border-radius: 30px;
+  border: 2px solid rgba(0, 255, 255, 0.7);
+  outline: none;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+
+
+input::placeholder {
+  color: rgba(0, 255, 255, 0.6);
+  font-style: italic;
+}
+
+input:focus {
+  box-shadow: 0 0 22px rgba(0, 255, 255, 1);
+  background: rgba(0, 0, 0, 0.95);
+  transform: scale(1.06);
+}
+
+.show {
+  width: 90%;
+  max-width: 900px;
+  background: linear-gradient(135deg, rgba(30, 30, 60, 0.95), rgba(20, 20, 40, 0.95));
+  border-radius: 15px;
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.4s ease-in-out;
+  position: relative;
+  border: 2px solid rgba(0, 255, 255, 0.3);
+}
+
+.show:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.9);
+  transform: scale(1.03);
+}
+
+
+.info {
+  flex: 1;
+  padding: 10px;
+}
+
+.name {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ff66ff;
+  text-transform: uppercase;
+  text-shadow: 0 0 12px rgba(255, 102, 255, 0.8);
+}
+
+.genres {
+  font-size: 18px;
+  font-style: italic;
+  color: #bbbbbb;
+}
+
+.description {
+  font-size: 17px;
   line-height: 1.5;
-  color: #333;
+  color: #dddddd;
 }
+
 
 .show img {
-  width: 150px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-top: 15px;
+  border-radius: 10px;
+  max-width: 160px;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+}
+
+.show img:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 22px rgba(255, 255, 255, 0.8);
+}
+
+
+.rating {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 8px;
+  gap: 8px;
+  background: rgba(0, 255, 255, 0.15);
+  color: #ffcc00;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 0 12px rgba(255, 204, 0, 0.6);
+  transition: 0.3s ease-in-out;
+  margin-top: 12px;
+}
+
+
+
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 12px rgba(255, 0, 153, 0.9), 0 0 18px rgba(0, 255, 255, 0.9);
+  }
+  100% {
+    text-shadow: 0 0 24px rgba(255, 0, 153, 1), 0 0 32px rgba(0, 255, 255, 1);
+  }
 }
